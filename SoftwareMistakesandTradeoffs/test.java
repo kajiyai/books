@@ -8,7 +8,8 @@ Public class SystemComponent {
     return complexCalculations();
   }
 
-  private int complexCalculations() {
+  @VisibleForTesting
+  public int complexCalculations() {
     // 複雑なロジック
     return 0;
   }
