@@ -3,14 +3,15 @@
 // 時に最初に削除すべきものとして挙げていました。テストがしにくくなるなどの弊害も大きく、よく推奨しないとも
 // 言われますが、本章ではAPIと実装の設計の良し悪しを見るための事例として割り切ってお読みください。
 
-// グローバルなシングルトン・インスタンスを通じてコードを共有できる
-public class Singleton {
-  private static Singleton instance;
-  private Singleton() {}
+// スレッドセーフなシングルトンの同期処理
+public class SystemComponentSingletonSynchronized {
+  private static SystemComponent instance;
+  
+  private SystemComponentSingletonSynchronized() {}
 
-  public static Singleton getInstance() {
+  public static synchronized SystemComponent getInstance() {
     if (instance == null) {
-      instance = new Singleton();
+      instance = new SystemComponent();
     }
     return instance;
   }
