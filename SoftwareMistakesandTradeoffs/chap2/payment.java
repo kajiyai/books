@@ -8,3 +8,13 @@ public class PaymentResource {
   private final PaymentService PaymentService = new PaymentService();
   private final AuthService authService = new AuthService();
 }
+
+@GET
+@Path("/{token}")
+public Response getAllPayments(@PathParam("token") String token) {
+  if (authService.isTokenValid(token)) {
+    return Response.ok(paymentService.getAllPayments()).build();
+  } else {
+    return Response.status(Status.UNAUTHORIZED).build();
+  }
+}
